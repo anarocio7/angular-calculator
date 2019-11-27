@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BudgetItem } from 'src/shared/models/budget-item.model';
 
 @Component({
   selector: 'app-budget-item-box',
@@ -8,11 +8,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class BudgetItemBoxComponent implements OnInit {
 
-  @Input() isIncome: boolean = false;
+  @Input() item: BudgetItem;
+  @Output() xButtonClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() boxClick: EventEmitter<any> = new EventEmitter<any>();
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onXButtonClick() {
+    this.xButtonClick.emit();
+  }
+
+  onBoxClick() {
+    this.boxClick.emit();
   }
 
 }
